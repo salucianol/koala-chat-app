@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using KoalaChatApp.Infrastructure.Data;
 using KoalaChatApp.Infrastructure.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace KoalaChatApp.Web {
     public class Startup {
@@ -26,9 +27,40 @@ namespace KoalaChatApp.Web {
         public void ConfigureServices(IServiceCollection services) {
             services.AddDbContext<KoalaChatDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("LocalDbConnectionString")));
-            services.AddDefaultIdentity<ChatUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<KoalaChatDbContext>();
+                    Configuration.GetConnectionString("LocalDB")));
+            services.AddDbContext<KoalaChatIdentityDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("LocalDB")));
+
+            services.AddIdentity<ChatUser, IdentityRole<Guid>>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<KoalaChatIdentityDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = Configuration.GetSection("UserSettings").GetValue<byte>("PasswordRequiredLength");
+                options.Password.RequiredUniqueChars = 1;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(Configuration.GetSection("UserSettings").GetValue<byte>("LockoutTimeout"));
+                options.Lockout.MaxFailedAccessAttempts = Configuration.GetSection("UserSettings").GetValue<byte>("MaxRetriesLogin");
+                options.Lockout.AllowedForNewUsers = true;
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -54,7 +86,7 @@ namespace KoalaChatApp.Web {
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=ChatRoom}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

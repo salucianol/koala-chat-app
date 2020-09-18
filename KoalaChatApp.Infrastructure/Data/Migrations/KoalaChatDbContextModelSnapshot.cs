@@ -15,9 +15,9 @@ namespace KoalaChatApp.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0-rc.1.20451.13");
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("KoalaChatApp.ApplicationCore.Entities.ChatRoom", b =>
                 {
@@ -30,6 +30,15 @@ namespace KoalaChatApp.Infrastructure.Data.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<short>("MaxCharactersCount")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("MaxMessagesCount")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("MaxUsersAllowed")
+                        .HasColumnType("smallint");
 
                     b.Property<DateTimeOffset>("ModifiedAt")
                         .HasColumnType("datetimeoffset");
@@ -44,7 +53,7 @@ namespace KoalaChatApp.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("KoalaChatApp.ApplicationCore.Entities.ChatRoom", b =>
                 {
-                    b.OwnsMany("KoalaChatApp.ApplicationCore.Entities.ChatRoom+ChatMessage", "Messages", b1 =>
+                    b.OwnsMany("KoalaChatApp.ApplicationCore.Entities.ChatMessageText", "Messages", b1 =>
                         {
                             b1.Property<Guid>("ChatRoomId")
                                 .HasColumnType("uniqueidentifier");
@@ -76,13 +85,11 @@ namespace KoalaChatApp.Infrastructure.Data.Migrations
 
                             b1.HasKey("ChatRoomId", "Id");
 
-                            b1.ToTable("ChatMessage");
+                            b1.ToTable("ChatMessageText");
 
                             b1.WithOwner()
                                 .HasForeignKey("ChatRoomId");
                         });
-
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

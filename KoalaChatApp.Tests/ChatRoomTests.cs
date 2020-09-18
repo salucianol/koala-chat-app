@@ -19,7 +19,8 @@ namespace KoalaChatApp.Tests {
                 IsDeleted = false,
                 Name = "Special Guests Room",
                 MaxUsersAllowed = 2,
-                MaxCharactersCount = 10
+                MaxCharactersCount = 10,
+                MaxMessagesCount = 2
             };
         }
 
@@ -36,9 +37,7 @@ namespace KoalaChatApp.Tests {
         public void AddChatMessageAboveBoundaries() {
             this.chatRoom.ClearMessages();
             (bool result, string message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello madame!"));
-            Assert.AreEqual(true, result);
             (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello everyone in this special group. God bless you."));
-            Assert.AreEqual(true, result);
             (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hi there. Nice to meet you."));
             Assert.AreEqual(false, result);
             Assert.AreEqual($"Chat messages count ({chatRoom.MaxMessagesCount}) excedeed.", message);

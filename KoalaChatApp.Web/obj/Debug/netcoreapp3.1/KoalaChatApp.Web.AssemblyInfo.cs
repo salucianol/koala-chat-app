@@ -12,7 +12,7 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-KoalaChatApp.Web-D542790C-B786-4ED9-A985-E0864DBCFD14")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-KoalaChatApp.Web-47AA91C9-6161-495A-B4FE-A67B6FA8376C")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("KoalaChatApp.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

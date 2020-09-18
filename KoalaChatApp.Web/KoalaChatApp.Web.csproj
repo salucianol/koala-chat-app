@@ -2,18 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-KoalaChatApp.Web-D542790C-B786-4ED9-A985-E0864DBCFD14</UserSecretsId>
+    <UserSecretsId>aspnet-KoalaChatApp.Web-47AA91C9-6161-495A-B4FE-A67B6FA8376C</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0-rc.1.20451.13">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 

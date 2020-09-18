@@ -104,13 +104,21 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.13, )"
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[3.1.8, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.13, )"
+              "version": "[3.1.8, )"
             },
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
@@ -186,10 +194,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "MediatR": {
-              "target": "Package",
-              "version": "[8.1.0, )"
-            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.8, )"
@@ -202,11 +206,13 @@
               "target": "Package",
               "version": "[3.1.8, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.13, )"
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[3.1.8, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
