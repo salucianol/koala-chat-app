@@ -14,7 +14,7 @@ namespace KoalaChatApp.Infrastructure.Data {
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ChatRoom>().ToTable("ChatRooms");
-            modelBuilder.Entity<ChatRoom>().OwnsMany<ChatRoom.ChatMessage>(chatRoom => chatRoom.Messages);
+            modelBuilder.Entity<ChatRoom>().OwnsMany<ChatMessageText>(chatRoom => chatRoom.Messages);
         }
     }
 }

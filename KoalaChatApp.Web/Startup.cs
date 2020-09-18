@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using KoalaChatApp.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using KoalaChatApp.Infrastructure.Data;
+using KoalaChatApp.Infrastructure.Models;
 
 namespace KoalaChatApp.Web {
     public class Startup {
@@ -27,7 +27,7 @@ namespace KoalaChatApp.Web {
             services.AddDbContext<KoalaChatDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("LocalDbConnectionString")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ChatUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<KoalaChatDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();

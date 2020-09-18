@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using KoalaChatApp.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoalaChatApp.Web.Controllers {
     public class HomeController : Controller {

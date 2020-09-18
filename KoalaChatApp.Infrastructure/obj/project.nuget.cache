@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "l1h3pOkPYPRQMUFywDb9gePce54dp5sX4fUXlxi94ZvxxqgPOlM1E7UVxl5E7FeNQCGu1q7ezQRrXVgxd1bkAA==",
+  "dgSpecHash": "DqhB9Ul72PM2oqX+6UMqflFkMFcLgJXDD1vj2GgyV/sM6AYcE0DhuoA/h4eBgV+0JtSX+TIp3/OxYsTslJT5sg==",
   "success": true,
   "projectFilePath": "C:\\repos\\vstudio\\KoalaChatApp\\KoalaChatApp.Infrastructure\\KoalaChatApp.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\saluc\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
@@ -17,6 +19,8 @@
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0-rc.1.20451.14\\microsoft.extensions.configuration.abstractions.5.0.0-rc.1.20451.14.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.0-rc.1.20451.14\\microsoft.extensions.dependencyinjection.5.0.0-rc.1.20451.14.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0-rc.1.20451.14\\microsoft.extensions.dependencyinjection.abstractions.5.0.0-rc.1.20451.14.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.8\\microsoft.extensions.identity.core.3.1.8.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.8\\microsoft.extensions.identity.stores.3.1.8.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0-rc.1.20451.14\\microsoft.extensions.logging.5.0.0-rc.1.20451.14.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0-rc.1.20451.14\\microsoft.extensions.logging.abstractions.5.0.0-rc.1.20451.14.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.options\\5.0.0-rc.1.20451.14\\microsoft.extensions.options.5.0.0-rc.1.20451.14.nupkg.sha512",

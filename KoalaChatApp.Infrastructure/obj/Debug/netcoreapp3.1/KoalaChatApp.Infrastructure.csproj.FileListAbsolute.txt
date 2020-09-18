@@ -6,7 +6,7 @@ C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\bin\Debug\netcoreapp3.
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\obj\Debug\netcoreapp3.1\KoalaChatApp.Infrastructure.csprojAssemblyReference.cache
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\obj\Debug\netcoreapp3.1\KoalaChatApp.Infrastructure.AssemblyInfoInputs.cache
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\obj\Debug\netcoreapp3.1\KoalaChatApp.Infrastructure.AssemblyInfo.cs
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\obj\Debug\netcoreapp3.1\KoalaChatApp.Infrastructure.csproj.CoreCompileInputs.cache
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\obj\Debug\netcoreapp3.1\KoalaChatApp.Infrastructure.csproj.CopyComplete
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\obj\Debug\netcoreapp3.1\KoalaChatApp.Infrastructure.dll
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\obj\Debug\netcoreapp3.1\KoalaChatApp.Infrastructure.pdb
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Infrastructure\obj\Debug\netcoreapp3.1\KoalaChatApp.Infrastructure.csproj.CoreCompileInputs.cache
