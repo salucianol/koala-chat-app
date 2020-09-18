@@ -1,5 +1,29 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using Microsoft.AspNetCore.Identity
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div id="chatMessages" class="bg-dark rounded-sm"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-group">
+            <input type="text" id="message" class="form-control" placeholder="Write your message here..." aria-label="Write your message" aria-describedby="button-addon4">
+            <div class="input-group-append" id="button-addon4">
+                <button class="btn btn-outline-secondary" type="button" id="sendMessage">Send message</button>
+                <button class="btn btn-outline-secondary" type="button" id="clearMessage">Clear</button>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success" role="alert">
+        <strong>User: </strong>@User.Identity.Name
+    </div>
+</div>
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

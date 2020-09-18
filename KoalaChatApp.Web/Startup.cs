@@ -1,19 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using KoalaChatApp.Infrastructure.Data;
 using KoalaChatApp.Infrastructure.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using KoalaChatApp.Web.Hubs;
 
 namespace KoalaChatApp.Web {
     public class Startup {
@@ -34,6 +29,8 @@ namespace KoalaChatApp.Web {
 
             services.AddIdentity<ChatUser, IdentityRole<Guid>>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<KoalaChatIdentityDbContext>();
+
+            services.AddSignalR();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -88,6 +85,7 @@ namespace KoalaChatApp.Web {
                     name: "default",
                     pattern: "{controller=ChatRoom}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<KoalaChatHub>("/koalachat");
             });
         }
     }

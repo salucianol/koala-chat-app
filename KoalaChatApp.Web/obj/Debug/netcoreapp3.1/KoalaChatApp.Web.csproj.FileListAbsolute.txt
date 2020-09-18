@@ -178,3 +178,4 @@ C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\obj\Debug\netcoreapp3.1\Razor\Are
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\ChatRoom\Index.cshtml.g.cs
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\bin\Debug\netcoreapp3.1\libman.json
