@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "Rcy7TYXA3AMTc1i1weE7Wbi64y8sc4VTW1VyzysiMDViIacnug10N/v8qS7l5ZEvxUFKrAXcibXJDg4EAzHCjA==",
+  "success": true,
+  "projectFilePath": "C:\\repos\\vstudio\\KoalaChatApp\\KoalaChatApp.Bot.ApplicationCore\\KoalaChatApp.Bot.ApplicationCore.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\saluc\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.8\\microsoft.extensions.configuration.abstractions.3.1.8.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.8\\microsoft.extensions.logging.abstractions.3.1.8.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.8\\microsoft.extensions.primitives.3.1.8.nupkg.sha512"
+  ],
+  "logs": []
+}

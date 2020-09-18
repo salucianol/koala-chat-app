@@ -1,0 +1,12 @@
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\bin\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.deps.json
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\bin\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.dll
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\bin\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.pdb
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\bin\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.dll
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\bin\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.pdb
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.csprojAssemblyReference.cache
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.AssemblyInfoInputs.cache
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.AssemblyInfo.cs
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.csproj.CoreCompileInputs.cache
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.csproj.CopyComplete
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.dll
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.Infrastructure\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.Infrastructure.pdb
