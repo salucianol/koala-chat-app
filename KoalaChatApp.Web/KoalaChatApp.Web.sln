@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoalaChatApp.Web", "KoalaChatApp.Web.csproj", "{868D2B66-A3AC-4785-9E23-54EF9EDA86A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoalaChatApp.ApplicationCore", "..\KoalaChatApp.ApplicationCore\KoalaChatApp.ApplicationCore.csproj", "{0974DD3E-629A-457F-AC51-76001EB063A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoalaChatApp.Infrastructure", "..\KoalaChatApp.Infrastructure\KoalaChatApp.Infrastructure.csproj", "{FB673484-9DE2-40F6-BC35-B01D26A57EDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoalaChatApp.Bot", "..\KoalaChatApp.Bot\KoalaChatApp.Bot.csproj", "{A33300C2-F5B5-475C-AD0C-49A7737BE983}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{868D2B66-A3AC-4785-9E23-54EF9EDA86A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{868D2B66-A3AC-4785-9E23-54EF9EDA86A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{868D2B66-A3AC-4785-9E23-54EF9EDA86A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{868D2B66-A3AC-4785-9E23-54EF9EDA86A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0974DD3E-629A-457F-AC51-76001EB063A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0974DD3E-629A-457F-AC51-76001EB063A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0974DD3E-629A-457F-AC51-76001EB063A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0974DD3E-629A-457F-AC51-76001EB063A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB673484-9DE2-40F6-BC35-B01D26A57EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB673484-9DE2-40F6-BC35-B01D26A57EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB673484-9DE2-40F6-BC35-B01D26A57EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB673484-9DE2-40F6-BC35-B01D26A57EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A33300C2-F5B5-475C-AD0C-49A7737BE983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A33300C2-F5B5-475C-AD0C-49A7737BE983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A33300C2-F5B5-475C-AD0C-49A7737BE983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A33300C2-F5B5-475C-AD0C-49A7737BE983}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C66A9E26-6E73-44D4-B296-020AEDB2D08F}
+	EndGlobalSection
+EndGlobal

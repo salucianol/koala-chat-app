@@ -1,0 +1,9 @@
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\bin\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.deps.json
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\bin\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.dll
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\bin\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.pdb
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.AssemblyInfoInputs.cache
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.AssemblyInfo.cs
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.csproj.CoreCompileInputs.cache
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.dll
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.pdb
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.csprojAssemblyReference.cache
