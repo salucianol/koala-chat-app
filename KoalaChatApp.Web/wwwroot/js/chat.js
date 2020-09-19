@@ -9,7 +9,7 @@ connection.on(document.getElementById("chatRoomId").value, function (user, messa
     var encodedMsg = user + ": " + msg;
     var div = document.createElement("div");
     div.textContent = encodedMsg;
-    div.className = "alert alert-info";
+    div.className = "alert alert-info col-md-12";
     document.getElementById("chatMessages").appendChild(div);
 });
 

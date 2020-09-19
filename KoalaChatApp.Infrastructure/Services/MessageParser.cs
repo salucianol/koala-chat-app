@@ -13,15 +13,15 @@ namespace KoalaChatApp.Infrastructure.Services {
         public ChatMessage ParseMessage(Guid userId, string message) {
             if (message.StartsWith("/")) {
                 Regex regex = new Regex(@"^\/(.*?)=(.*)$");
-                MatchCollection matches = regex.Matches(message);
-                if (matches.Count != 2) {
+                Match match = regex.Match(message);
+                if (match.Groups.Count != 3) {
                     // TODO: Add some code to get displayed an error message since the command was wrong.
                     return null;
                 }
-                if (!this.commandsHelper.IsCommandValid(matches[0].Value)) {
+                if (!this.commandsHelper.IsCommandValid(match.Groups[1].Value)) {
                     return null;
                 }
-                return new ChatMessageCommand(userId, matches[1].Value, ApplicationCore.Enums.ChatMessageType.COMMAND);
+                return new ChatMessageCommand(userId, match.Groups[2].Value, ApplicationCore.Enums.ChatMessageType.COMMAND);
             }
             return new ChatMessageText(userId, message);
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using KoalaChatApp.ApplicationCore.Interfaces;
 using KoalaChatApp.Infrastructure.Data;
+using KoalaChatApp.Infrastructure.Interfaces;
 using KoalaChatApp.Infrastructure.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -18,8 +19,10 @@ namespace KoalaChatApp.Web {
             IHost host = CreateHostBuilder(args).Build();
             IMessageQueue messageQueue = host.Services.GetRequiredService<IMessageQueue>();
             messageQueue.Connect();
-            var userManager = host.Services.GetRequiredService<UserManager<ChatUser>>();
-            DatabaseInitialization.Initialize(userManager);
+            ICommandsHelper commandsHelper = host.Services.GetRequiredService<ICommandsHelper>();
+            commandsHelper.AddCommand("stock");
+            //var userManager = host.Services.GetRequiredService<UserManager<ChatUser>>();
+            //DatabaseInitialization.Initialize(userManager);
             host.Run();
         }
 

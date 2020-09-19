@@ -4,7 +4,6 @@ using KoalaChatApp.Infrastructure.Data.Specifications;
 using KoalaChatApp.Infrastructure.Models;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 

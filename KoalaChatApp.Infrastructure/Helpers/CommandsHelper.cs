@@ -3,15 +3,15 @@ using KoalaChatApp.Infrastructure.Interfaces;
 
 namespace KoalaChatApp.Infrastructure.Helpers {
     public class CommandsHelper : ICommandsHelper {
-        public CommandsHelper() {
-
-        }
         private HashSet<string> Commands { get; set; }
+        public CommandsHelper() {
+            this.Commands = new HashSet<string>();
+        }
         public void AddCommand(string command) {
-            this.Commands.Add(command);
+            this.Commands.Add(command.ToLower());
         }
         public bool IsCommandValid(string command) {
-            return this.Commands.Contains(command);
+            return this.Commands.Contains(command.ToLower());
         }
     }
 }

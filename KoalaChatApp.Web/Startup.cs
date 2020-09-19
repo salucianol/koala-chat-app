@@ -41,8 +41,6 @@ namespace KoalaChatApp.Web {
             services.AddIdentity<ChatUser, IdentityRole<Guid>>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<KoalaChatIdentityDbContext>();
 
-            services.AddScoped<ICommandsHelper, CommandsHelper>();
-
             RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
             Configuration.GetSection("RabbitMqConfigurations").Bind(rabbitConfigurations);
             services.AddSingleton<RabbitMQ.Client.IConnectionFactory>(new ConnectionFactory {
@@ -51,6 +49,8 @@ namespace KoalaChatApp.Web {
                 UserName = rabbitConfigurations.Username,
                 Password = rabbitConfigurations.Password
             });
+
+            services.AddSingleton<ICommandsHelper, CommandsHelper>();
             services.AddSingleton<IMessageQueue, MessageQueue>();
             services.AddScoped<IMessageParser, MessageParser>();
             services.AddScoped<IRepository<ChatRoom>, ChatRoomRepository>();
