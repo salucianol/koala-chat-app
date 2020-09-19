@@ -36,6 +36,14 @@ namespace KoalaChatApp.Infrastructure.Services {
             this.chatRoomRepository.Delete(chatRoom);
         }
 
+        public bool Exists(string name) {
+            return this.chatRoomRepository.Get(new ChatRoomSpecification(name)).Any();
+        }
+
+        public bool Exists(Guid id) {
+            return this.chatRoomRepository.Get(new ChatRoomSpecification(id)).Any();
+        }
+
         public ChatRoom GetChatRoom(Guid chatRoomId) {
             return this.chatRoomRepository.Get(new ChatRoomSpecification(chatRoomId)).FirstOrDefault();
         }
@@ -47,7 +55,7 @@ namespace KoalaChatApp.Infrastructure.Services {
         public IEnumerable<ChatMessageTextDTO> GetChatRoomMessages(Guid chatRoomId) {
             ChatRoom chatRoom = this.chatRoomRepository.Get(new ChatRoomSpecification(chatRoomId)).FirstOrDefault();
             if (chatRoom?.Id != Guid.Empty) {
-                return chatRoom.Messages.OrderByDescending(cm => cm.SentDate).Take(chatRoom.MaxMessagesCount).Select(cm => new ChatMessageTextDTO {
+                return chatRoom.Messages.OrderBy(cm => cm.SentDate).Take(chatRoom.MaxMessagesCount).Select(cm => new ChatMessageTextDTO {
                     Text = cm.Text,
                     Date = cm.SentDate.ToString("yyyy-MM-dd HH:mm"),
                     RoomName = chatRoom.Name,

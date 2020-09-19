@@ -12,10 +12,13 @@ connection.on(document.getElementById("chatRoomId").value, function (user, date,
     }
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var encodedMsg = "<strong>" + user + ":</strong> " + msg + "<span class='float-right'>" + date + "</span>";
+    //encodedMsg = encodedMsg.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var div = document.createElement("div");
-    div.textContent = encodedMsg;
+    div.innerHTML = encodedMsg;
     div.className = "alert alert-info col-md-12";
-    document.getElementById("chatMessages").appendChild(div);
+    var chatMessages = document.getElementById("chatMessages");
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
 connection.start().then(function () {

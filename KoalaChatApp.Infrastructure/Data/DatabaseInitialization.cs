@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml;
 
@@ -11,8 +12,7 @@ namespace KoalaChatApp.Infrastructure.Data {
     public class DatabaseInitialization {
         public static async void Initialize(UserManager<ChatUser> userManager, ILogger<DatabaseInitialization> logger, IChatRoomService chatRoomService) {
             try {
-                var chatRoom = chatRoomService.GetChatRoom("Default Chat Room");
-                if (chatRoom?.Id != Guid.Empty) {
+                if (!chatRoomService.Exists("Default Chat Room")) {
                     chatRoomService.AddChatRoom(new ApplicationCore.Entities.ChatRoom() {
                         Name = "Default Chat Room",
                         MaxCharactersCount = 150,

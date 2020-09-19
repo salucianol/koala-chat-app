@@ -16,29 +16,40 @@ namespace KoalaChatApp.Web.Hubs {
         private readonly IMediator mediator;
         private readonly IRepository<ChatUser> userRepository;
         private readonly ILogger<KoalaChatHub> logger;
+
         public KoalaChatHub(IMessageParser messageParser, IMediator mediator, IRepository<ChatUser> userRepository, ILogger<KoalaChatHub> logger) {
             this.messageParser = messageParser;
             this.mediator = mediator;
             this.userRepository = userRepository;
             this.logger = logger;
         }
+
         public async Task SendMessage(string chatRoomId, string message) {
             try {
-                ChatUser chatUser = this.userRepository.Get(new UserSpecification(Context.User.Identity.Name)).FirstOrDefault();
+                ChatUser chatUser = this.userRepository
+                                            .Get(new UserSpecification(Context.User.Identity.Name))
+                                            .FirstOrDefault();
                 ChatMessage chatMessage = this.messageParser.ParseMessage(chatUser.Id, message);
-                await this.mediator.Send<bool>(new ChatMessageRequestModel {
-                    ChatMessage = chatMessage,
-                    ChatRoomId = chatRoomId
-                });
+                await this.mediator
+                        .Send<bool>(new ChatMessageRequestModel {
+                            ChatMessage = chatMessage,
+                            ChatRoomId = chatRoomId
+                        });
                 if (chatMessage.MessageType == ApplicationCore.Enums.ChatMessageType.TEXT) {
-                    await Clients.All.SendAsync(chatRoomId, chatMessage.SentDate.ToString("yyyy-MM-dd HH:mm"), Context.User.Identity.Name, message);
+                    await Clients.All.SendAsync(chatRoomId, 
+                                                Context.User.Identity.Name, 
+                                                chatMessage.SentDate.ToString("yyyy-MM-dd HH:mm"), 
+                                                message);
                 }
             } catch (CommandFormatException ex) {
-                logger.LogError(ex, $"User {Context.User.Identity.Name} sent an invalid command to Chat Room {chatRoomId}. Message sent: {message}.");
+                logger.LogError(ex, 
+                                $"User {Context.User.Identity.Name} sent an invalid command to Chat Room {chatRoomId}. Message sent: {message}.");
             } catch (CommandNotFoundException ex) {
-                logger.LogError(ex, $"User {Context.User.Identity.Name} sent not allowed command to Chat Room {chatRoomId}. Message sent: {message}.");
+                logger.LogError(ex, 
+                                $"User {Context.User.Identity.Name} sent not allowed command to Chat Room {chatRoomId}. Message sent: {message}.");
             } catch (Exception ex) {
-                logger.LogError(ex, "An internal error occured while processing message sent.");
+                logger.LogError(ex, 
+                                "An internal error occured while processing message sent.");
             }
         }
     }
