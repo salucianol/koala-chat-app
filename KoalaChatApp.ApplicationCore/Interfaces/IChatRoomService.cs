@@ -2,7 +2,6 @@
 using KoalaChatApp.ApplicationCore.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace KoalaChatApp.ApplicationCore.Interfaces {
     public interface IChatRoomService {
@@ -14,5 +13,7 @@ namespace KoalaChatApp.ApplicationCore.Interfaces {
         ChatRoom GetChatRoom(string name);
         IEnumerable<ChatMessageTextDTO> GetChatRoomMessages(Guid chatRoomId);
         void AddChatMessage(Guid chatRoomId, ChatMessageText chatMessageText);
+        bool Exists(string name);
+        bool Exists(Guid id);
     }
 }

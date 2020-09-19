@@ -10,12 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace KoalaChatApp.Web.Controllers {
     [Authorize]
     public class ChatUserController : Controller {
-        private readonly IChatRoomService chatRoomService;
+        private readonly IChatRoomService _chatRoomService;
+
         public ChatUserController(IChatRoomService chatRoomService) {
-            this.chatRoomService = chatRoomService;
+            _chatRoomService = chatRoomService;
         }
+        
         public IActionResult Index() {
-            IEnumerable<ChatRoom> chatRooms = this.chatRoomService.GetChatRooms();
+            IEnumerable<ChatRoom> chatRooms = _chatRoomService.GetChatRooms();
             return View(chatRooms);
         }
     }

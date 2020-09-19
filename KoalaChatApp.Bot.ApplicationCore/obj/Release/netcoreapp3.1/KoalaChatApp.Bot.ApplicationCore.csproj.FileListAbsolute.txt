@@ -1,9 +1,0 @@
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\bin\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.deps.json
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\bin\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.dll
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\bin\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.pdb
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.csprojAssemblyReference.cache
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.AssemblyInfoInputs.cache
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.AssemblyInfo.cs
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.csproj.CoreCompileInputs.cache
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.dll
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot.ApplicationCore\obj\Release\netcoreapp3.1\KoalaChatApp.Bot.ApplicationCore.pdb

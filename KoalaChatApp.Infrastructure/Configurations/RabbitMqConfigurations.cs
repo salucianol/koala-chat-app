@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KoalaChatApp.Infrastructure.Configurations {
+﻿namespace KoalaChatApp.Infrastructure.Configurations {
     public class RabbitMqConfigurations {
         public string Hostname { get; set; }
         public string Username { get; set; }

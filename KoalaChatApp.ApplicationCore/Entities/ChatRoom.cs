@@ -1,11 +1,6 @@
-﻿using KoalaChatApp.ApplicationCore.Enums;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace KoalaChatApp.ApplicationCore.Entities {
     public class ChatRoom : BaseEntity {
@@ -18,32 +13,33 @@ namespace KoalaChatApp.ApplicationCore.Entities {
         public short MaxMessagesCount { get; set; }
 
         public (bool, string) AddMessage(ChatMessageText message) {
-            if (this.Messages.Count > this.MaxMessagesCount) {
-                return (false, $"Chat messages count ({this.MaxMessagesCount}) excedeed.");
+            if (Messages.Count > MaxMessagesCount) {
+                return (false, $"Chat messages count ({MaxMessagesCount}) excedeed.");
             }
-            this.Messages.Add(message);
+            Messages.Add(message);
             return (true, string.Empty);
         }
+
         public bool ClearMessages() {
-            this.Messages.Clear();
+            Messages.Clear();
             return true;
         }
 
         public (bool, string) LetUserIn(Guid userId) {
-            if (this.Users.Count > this.MaxUsersAllowed) {
-                return (false, $"Users count ({this.MaxUsersAllowed}) excedeed.");
+            if (Users.Count > MaxUsersAllowed) {
+                return (false, $"Users count ({MaxUsersAllowed}) excedeed.");
             }
-            this.Users.Add(userId);
+            Users.Add(userId);
             return (true, string.Empty);
         }
 
         public bool GetUsetOut(Guid userId) {
-            this.Users.Remove(userId);
+            Users.Remove(userId);
             return true;
         }
 
         public bool ClearUsers() {
-            this.Users.Clear();
+            Users.Clear();
             return true;
         }
     }

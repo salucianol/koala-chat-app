@@ -8,34 +8,43 @@ using System;
 
 namespace KoalaChatApp.Bot.Infrastructure.Services {
     public class Cache : ICache<Stock> {
-        private readonly IMemoryCache memoryCache;
-        private readonly ILogger<Cache> logger;
-        private readonly IConfiguration configuration;
-        private readonly BotConfigurations botConfigurations = new BotConfigurations();
+        private readonly IMemoryCache _memoryCache;
+        private readonly ILogger<Cache> _logger;
+        private readonly IConfiguration _configuration;
+        private readonly BotConfigurations _botConfigurations = new BotConfigurations();
 
-        public Cache(IMemoryCache memoryCache, ILogger<Cache> logger, IConfiguration configuration) {
-            this.memoryCache = memoryCache;
-            this.logger = logger;
-            this.configuration = configuration;
-            this.configuration.GetSection("BotConfigurations").Bind(this.botConfigurations);
+        public Cache(IMemoryCache memoryCache, 
+                        ILogger<Cache> logger, 
+                        IConfiguration configuration) {
+            _memoryCache = memoryCache;
+            _logger = logger;
+            _configuration = configuration;
+            _configuration.GetSection("BotConfigurations")
+                                .Bind(_botConfigurations);
         }
         public CacheKey<Stock> GetKey(string key) {
             try {
-                if (!this.memoryCache.TryGetValue(key, out CacheKey<Stock> cacheKey)) {
+                if (!_memoryCache.TryGetValue(key, out CacheKey<Stock> cacheKey)) {
                     return null;
                 }
                 return cacheKey;
-            } catch (Exception) {
+            } catch (Exception ex) {
+                _logger.LogError(ex, "An internal error ocurred, check logs for further details");
                 throw;
             }
         }
 
         public void PutKey(CacheKey<Stock> cacheKey) {
             try {
-                this.memoryCache.Set<CacheKey<Stock>>(cacheKey.Key, cacheKey, new MemoryCacheEntryOptions {
-                    SlidingExpiration = TimeSpan.FromSeconds(this.botConfigurations.CacheKeyLifetime)
-                });
-            } catch (Exception) {
+                _memoryCache.Set<CacheKey<Stock>>(cacheKey.Key, 
+                                                    cacheKey, 
+                                                    new MemoryCacheEntryOptions {
+                                                        SlidingExpiration = 
+                                                            TimeSpan.FromSeconds(_botConfigurations.CacheKeyLifetime)
+                                                   });
+                _logger.LogInformation($"Put key {cacheKey.Key} successfully into cache.");
+            } catch (Exception ex) {
+                _logger.LogError(ex, "An internal error ocurred, check logs for further details");
                 throw;
             }
         }

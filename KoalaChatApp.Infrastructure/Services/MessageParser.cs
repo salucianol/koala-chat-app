@@ -4,13 +4,16 @@ using System;
 using System.Text.RegularExpressions;
 using KoalaChatApp.Infrastructure.Interfaces;
 using KoalaChatApp.Infrastructure.Exceptions;
+using KoalaChatApp.ApplicationCore.Enums;
 
 namespace KoalaChatApp.Infrastructure.Services {
     public class MessageParser : IMessageParser {
-        private readonly ICommandsHelper commandsHelper;
+        private readonly ICommandsHelper _commandsHelper;
+        
         public MessageParser(ICommandsHelper commandsHelper) {
-            this.commandsHelper = commandsHelper;
+            _commandsHelper = commandsHelper;
         }
+
         public ChatMessage ParseMessage(Guid userId, string message) {
             if (message.StartsWith("/")) {
                 Regex regex = new Regex(@"^\/(.*?)=(.*)$");
@@ -18,10 +21,10 @@ namespace KoalaChatApp.Infrastructure.Services {
                 if (match.Groups.Count != 3) {
                     throw new CommandFormatException(message);
                 }
-                if (!this.commandsHelper.IsCommandValid(match.Groups[1].Value)) {
+                if (!_commandsHelper.IsCommandValid(match.Groups[1].Value)) {
                     throw new CommandNotFoundException(match.Groups[1].Value);
                 }
-                return new ChatMessageCommand(userId, match.Groups[2].Value, ApplicationCore.Enums.ChatMessageType.COMMAND) {
+                return new ChatMessageCommand(userId, match.Groups[2].Value, ChatMessageType.COMMAND) {
                     SentDate = DateTimeOffset.Now
                 };
             }

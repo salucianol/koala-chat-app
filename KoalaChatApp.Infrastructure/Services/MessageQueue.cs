@@ -1,5 +1,4 @@
-﻿using KoalaChatApp.ApplicationCore.Entities;
-using KoalaChatApp.ApplicationCore.Interfaces;
+﻿using KoalaChatApp.ApplicationCore.Interfaces;
 using KoalaChatApp.Infrastructure.Configurations;
 using KoalaChatApp.Infrastructure.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -15,63 +14,73 @@ using System.Linq;
 
 namespace KoalaChatApp.Infrastructure.Services {
     public class MessageQueue : IMessageQueue {
-        private readonly IConnectionFactory connectionFactory;
-        private readonly IConfiguration configuration;
-        private readonly IChatHubService chatHubService;
-        private readonly IRepository<ChatUser> userRepository;
-        private readonly RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
-        private IConnection connection;
-        private IModel model;
-        public MessageQueue(IConnectionFactory connectionFactory, IConfiguration configuration, IChatHubService chatHubService, IRepository<ChatUser> userRepository) {
-            this.connectionFactory = connectionFactory;
-            this.configuration = configuration;
-            this.configuration.GetSection("RabbitMqConfigurations").Bind(this.rabbitConfigurations);
-            this.chatHubService = chatHubService;
-            this.userRepository = userRepository;
+        private readonly IConnectionFactory _connectionFactory;
+        private readonly IConfiguration _configuration;
+        private readonly IChatHubService _chatHubService;
+        private readonly IRepository<ChatUser> _userRepository;
+        private readonly RabbitMqConfigurations _rabbitConfigurations = new RabbitMqConfigurations();
+        private IConnection _connection;
+        private IModel _model;
+
+        public MessageQueue(IConnectionFactory connectionFactory, 
+                                IConfiguration configuration, 
+                                IChatHubService chatHubService, 
+                                IRepository<ChatUser> userRepository) {
+            _connectionFactory = connectionFactory;
+            _configuration = configuration;
+            _configuration.GetSection("RabbitMqConfigurations")
+                            .Bind(_rabbitConfigurations);
+            _chatHubService = chatHubService;
+            _userRepository = userRepository;
         }
 
         public void Connect() {
-            if (this.connection == null) {
-                this.connection = this.connectionFactory.CreateConnection();
-                if (this.model == null) {
-                    this.model = connection.CreateModel();
+            if (_connection == null) {
+                _connection = _connectionFactory.CreateConnection();
+                if (_model == null) {
+                    _model = _connection.CreateModel();
                 }
-                model.QueueDeclare(queue: this.rabbitConfigurations.MessageInboundQueue,
+                _model.QueueDeclare(queue: _rabbitConfigurations.MessageInboundQueue,
                                         durable: false,
                                         exclusive: false,
                                         autoDelete: false,
                                         arguments: null);
-                model.QueueDeclare(queue: this.rabbitConfigurations.MessageOutboundQueue,
+                _model.QueueDeclare(queue: _rabbitConfigurations.MessageOutboundQueue,
                                         durable: false,
                                         exclusive: false,
                                         autoDelete: false,
                                         arguments: null);
 
-                EventingBasicConsumer eventingBasicConsumer = new EventingBasicConsumer(this.model);
+                EventingBasicConsumer eventingBasicConsumer = new EventingBasicConsumer(_model);
                 eventingBasicConsumer.Received += EventingBasicConsumer_Received;
-                model.BasicConsume(this.rabbitConfigurations.MessageOutboundQueue, true, eventingBasicConsumer);
+                _model.BasicConsume(_rabbitConfigurations.MessageOutboundQueue, true, eventingBasicConsumer);
             }
         }
 
         public void EnqueueMessage(QueueMessageDTO message) {
             byte[] queueMessage = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
-            this.model = this.connection.CreateModel();
-            this.model.BasicPublish(exchange: "",
-                                 routingKey: this.rabbitConfigurations.MessageInboundQueue,
+            _model = _connection.CreateModel();
+            _model.BasicPublish(exchange: "",
+                                 routingKey: _rabbitConfigurations.MessageInboundQueue,
                                  basicProperties: null,
                                  body: queueMessage);
         }
 
         private void EventingBasicConsumer_Received(object sender, BasicDeliverEventArgs e) {
-            QueueMessageDTO queueMessage = JsonConvert.DeserializeObject<QueueMessageDTO>(Encoding.UTF8.GetString(e.Body.ToArray()));
+            QueueMessageDTO queueMessage = JsonConvert
+                                            .DeserializeObject<QueueMessageDTO>(Encoding.UTF8
+                                                                                            .GetString(e.Body.ToArray()));
             ChatMessageTextDTO chatMessageText = new ChatMessageTextDTO {
                 Date = DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm"),
                 RoomId = Guid.Parse(queueMessage.RoomId),
                 RoomName = string.Empty,
                 Text = queueMessage.Quote,
-                User = this.userRepository.Get(new UserSpecification("bot@koalaappchat")).FirstOrDefault().UserName
+                User = _userRepository
+                        .Get(new UserSpecification("bot@koalaappchat"))
+                        .FirstOrDefault()
+                        .UserName
             };
-            this.chatHubService.SendMessage(queueMessage.RoomId, chatMessageText);
+            _chatHubService.SendMessage(queueMessage.RoomId, chatMessageText);
         }
     }
 }

@@ -11,60 +11,91 @@ using Microsoft.Extensions.Logging;
 
 namespace KoalaChatApp.Infrastructure.Services {
     public class ChatRoomService : IChatRoomService {
-        private readonly IRepository<ChatRoom> chatRoomRepository;
-        private readonly IRepository<ChatUser> userRepository;
-        private readonly ILogger<ChatRoomService> logger;
-        public ChatRoomService(IRepository<ChatRoom> chatRoomRepository, IRepository<ChatUser> userRepository, ILogger<ChatRoomService> logger) {
-            this.chatRoomRepository = chatRoomRepository;
-            this.userRepository = userRepository;
-            this.logger = logger;
+        private readonly IRepository<ChatRoom> _chatRoomRepository;
+        private readonly IRepository<ChatUser> _userRepository;
+        private readonly ILogger<ChatRoomService> _logger;
+
+        public ChatRoomService(IRepository<ChatRoom> chatRoomRepository, 
+                                IRepository<ChatUser> userRepository, 
+                                ILogger<ChatRoomService> logger) {
+            _chatRoomRepository = chatRoomRepository;
+            _userRepository = userRepository;
+            _logger = logger;
         }
+
         public void AddChatMessage(Guid chatRoomId, ChatMessageText chatMessageText) {
-            ChatRoom chatRoom = this.chatRoomRepository.Get(new ChatRoomSpecification(chatRoomId)).FirstOrDefault();
+            ChatRoom chatRoom = _chatRoomRepository
+                                    .Get(new ChatRoomSpecification(chatRoomId))
+                                    .FirstOrDefault();
             if (chatRoom != default(ChatRoom)) {
                 chatRoom.AddMessage(chatMessageText);
-                this.chatRoomRepository.Update(chatRoom);
+                _chatRoomRepository.Update(chatRoom);
             }
-            this.logger.LogInformation($"Chat room with id {chatRoomId.ToString()} not found.", null);
+            _logger.LogInformation($"Chat room with id {chatRoomId.ToString()} not found.", null);
         }
 
         public void AddChatRoom(ChatRoom chatRoom) {
-            this.chatRoomRepository.Add(chatRoom);
+            _chatRoomRepository
+                .Add(chatRoom);
         }
 
         public void DeleteChatRoom(ChatRoom chatRoom) {
-            this.chatRoomRepository.Delete(chatRoom);
+            _chatRoomRepository
+                .Delete(chatRoom);
+        }
+
+        public bool Exists(string name) {
+            return _chatRoomRepository
+                        .Get(new ChatRoomSpecification(name))
+                        .Any();
+        }
+
+        public bool Exists(Guid id) {
+            return _chatRoomRepository
+                        .Get(new ChatRoomSpecification(id))
+                        .Any();
         }
 
         public ChatRoom GetChatRoom(Guid chatRoomId) {
-            return this.chatRoomRepository.Get(new ChatRoomSpecification(chatRoomId)).FirstOrDefault();
+            return _chatRoomRepository
+                        .Get(new ChatRoomSpecification(chatRoomId))
+                        .FirstOrDefault();
         }
 
         public ChatRoom GetChatRoom(string name) {
-            return this.chatRoomRepository.Get(new ChatRoomSpecification(name)).FirstOrDefault();
+            return _chatRoomRepository
+                        .Get(new ChatRoomSpecification(name))
+                        .FirstOrDefault();
         }
 
         public IEnumerable<ChatMessageTextDTO> GetChatRoomMessages(Guid chatRoomId) {
-            ChatRoom chatRoom = this.chatRoomRepository.Get(new ChatRoomSpecification(chatRoomId)).FirstOrDefault();
+            ChatRoom chatRoom = _chatRoomRepository
+                                    .Get(new ChatRoomSpecification(chatRoomId))
+                                    .FirstOrDefault();
             if (chatRoom?.Id != Guid.Empty) {
-                return chatRoom.Messages.OrderByDescending(cm => cm.SentDate).Take(chatRoom.MaxMessagesCount).Select(cm => new ChatMessageTextDTO {
-                    Text = cm.Text,
-                    Date = cm.SentDate.ToString("yyyy-MM-dd HH:mm"),
-                    RoomName = chatRoom.Name,
-                    User = this.userRepository.Get(new UserSpecification(cm.UserId)).FirstOrDefault().UserName,
-                    RoomId = chatRoom.Id
-                }); 
+                return chatRoom.Messages
+                                .OrderBy(cm => cm.SentDate)
+                                .Take(chatRoom.MaxMessagesCount)
+                                .Select(cm => new ChatMessageTextDTO {
+                                    Text = cm.Text,
+                                    Date = cm.SentDate.ToString("yyyy-MM-dd HH:mm"),
+                                    RoomName = chatRoom.Name,
+                                    User = _userRepository.Get(new UserSpecification(cm.UserId)).FirstOrDefault().UserName,
+                                    RoomId = chatRoom.Id
+                                }); 
             }
-            this.logger.LogInformation($"Chat room with Id {chatRoomId.ToString()} not found.", null);
+            _logger.LogInformation($"Chat room with Id {chatRoomId.ToString()} not found.", null);
             return null;
         }
 
         public IEnumerable<ChatRoom> GetChatRooms() {
-            return this.chatRoomRepository.Get(new ChatRoomSpecification());
+            return _chatRoomRepository
+                        .Get(new ChatRoomSpecification());
         }
 
         public void UpdateChatRoom(ChatRoom chatRoom) {
-            this.chatRoomRepository.Update(chatRoom);
+            _chatRoomRepository
+                .Update(chatRoom);
         }
     }
 }

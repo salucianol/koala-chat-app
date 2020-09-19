@@ -1,5 +1,3 @@
-using System;
-
 namespace KoalaChatApp.Web.Models {
     public class ErrorViewModel {
         public string RequestId { get; set; }
