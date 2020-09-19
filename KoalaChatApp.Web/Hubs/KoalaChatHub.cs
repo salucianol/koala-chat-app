@@ -25,6 +25,9 @@ namespace KoalaChatApp.Web.Hubs {
         }
 
         public async Task SendMessage(string chatRoomId, string message) {
+            string botChatUser = this.userRepository
+                                        .Get(new UserSpecification("bot@koalaappchat"))
+                                        .FirstOrDefault()?.UserName;
             try {
                 ChatUser chatUser = this.userRepository
                                             .Get(new UserSpecification(Context.User.Identity.Name))
@@ -42,9 +45,17 @@ namespace KoalaChatApp.Web.Hubs {
                                                 message);
                 }
             } catch (CommandFormatException ex) {
+                await Clients.Client(Context.ConnectionId).SendAsync(chatRoomId,
+                                                                botChatUser,
+                                                                DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm"),
+                                                                $"Command sent ({message}) invalid.");
                 logger.LogError(ex, 
                                 $"User {Context.User.Identity.Name} sent an invalid command to Chat Room {chatRoomId}. Message sent: {message}.");
             } catch (CommandNotFoundException ex) {
+                await Clients.Client(Context.ConnectionId).SendAsync(chatRoomId,
+                                                                botChatUser,
+                                                                DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm"),
+                                                                $"Command sent ({message}) not allowed.");
                 logger.LogError(ex, 
                                 $"User {Context.User.Identity.Name} sent not allowed command to Chat Room {chatRoomId}. Message sent: {message}.");
             } catch (Exception ex) {
