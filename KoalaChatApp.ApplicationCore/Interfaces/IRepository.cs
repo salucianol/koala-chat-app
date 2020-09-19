@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace KoalaChatApp.ApplicationCore.Interfaces {
-    public interface IRepository<T> where T : BaseEntity {
+    public interface IRepository<T> {
         IEnumerable<T> Get(ISpecification<T> specification);
         void Add(T entity);
         void Update(T entity);

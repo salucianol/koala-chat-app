@@ -32,8 +32,8 @@ namespace KoalaChatApp.Infrastructure.Data {
             return queryableIncludedStrings.Where(specification.Criteria).AsEnumerable();
         }
 
-        public async void SaveChanges() {
-            await koalaChatDbContext.SaveChangesAsync();
+        public void SaveChanges() {
+            koalaChatDbContext.SaveChanges();
         }
 
         public void Update(ChatRoom entity) {

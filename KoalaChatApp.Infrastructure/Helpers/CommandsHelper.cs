@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using KoalaChatApp.Infrastructure.Interfaces;
 
 namespace KoalaChatApp.Infrastructure.Helpers {
     public class CommandsHelper : ICommandsHelper {

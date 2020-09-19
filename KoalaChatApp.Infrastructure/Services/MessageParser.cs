@@ -1,11 +1,8 @@
 ﻿using KoalaChatApp.ApplicationCore.Entities;
 using KoalaChatApp.ApplicationCore.Interfaces;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using System.Text.RegularExpressions;
+using KoalaChatApp.Infrastructure.Interfaces;
 
 namespace KoalaChatApp.Infrastructure.Services {
     public class MessageParser : IMessageParser {

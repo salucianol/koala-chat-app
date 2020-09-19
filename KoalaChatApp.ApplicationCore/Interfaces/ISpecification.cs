@@ -5,7 +5,7 @@ using KoalaChatApp.ApplicationCore.Entities;
 using System.Text;
 
 namespace KoalaChatApp.ApplicationCore.Interfaces {
-    public interface ISpecification<T> where T : BaseEntity {
+    public interface ISpecification<T> {
         public Expression<Func<T, bool>> Criteria { get; }
         public List<Expression<Func<T, object>>> Includes { get; }
         public List<string> IncludeStrings { get; }

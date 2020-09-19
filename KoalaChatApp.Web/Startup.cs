@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using KoalaChatApp.Infrastructure.Data;
 using KoalaChatApp.Infrastructure.Models;
 using KoalaChatApp.Web.Hubs;
-using KoalaChatApp.Infrastructure;
+using KoalaChatApp.Infrastructure.Interfaces;
 using KoalaChatApp.Infrastructure.Helpers;
 using KoalaChatApp.ApplicationCore.Interfaces;
 using KoalaChatApp.Infrastructure.Services;
@@ -54,6 +54,7 @@ namespace KoalaChatApp.Web {
             services.AddSingleton<IMessageQueue, MessageQueue>();
             services.AddScoped<IMessageParser, MessageParser>();
             services.AddScoped<IRepository<ChatRoom>, ChatRoomRepository>();
+            services.AddScoped<IRepository<ChatUser>, UserRepository>();
             services.AddScoped<IChatRoomService, ChatRoomService>();
             services.AddScoped<ISpecification<ChatRoom>, ChatRoomSpecification>();
             services.AddScoped<IRequestHandler<ChatMessageRequestModel, bool>, ProcessMessageSentHandler>();

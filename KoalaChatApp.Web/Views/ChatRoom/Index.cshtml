@@ -1,10 +1,27 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@model KoalaChatApp.ApplicationCore.Entities.ChatRoom 
+@using System.Collections.Generic
+@model List<ChatMessageModelResponse>
 
 <div class="container">
+    @if (Model.Count > 0) {
+        <div class="row">
+            <div class="col-md-12">
+                <strong>Chat room: </strong>@Model[0].RoomName
+            </div>
+        </div>
+    }
     <div class="row">
-        <div class="col-6">
-            <div id="chatMessages" class="bg-dark rounded-sm"></div>
+        <div class="col-12 alert alert-light rounded-sm">
+            <div id="chatMessages">
+                @if (Model.Count > 0) {
+                    @foreach (ChatMessageModelResponse chatMessage in Model) {
+                        <div class="alert alert-info col-md-6">
+                            <strong>@chatMessage.User:</strong> @chatMessage.Text
+                            <span class="float-right">@chatMessage.Date</span>
+                        </div>
+                    }
+                }
+            </div>
         </div>
     </div>
     <div class="row">
@@ -14,16 +31,15 @@
     </div>
     <div class="row">
         <div class="input-group">
-            <input type="hidden" id="chatRoomId" value="@Model.Id" />
+            @if (Model.Count > 0) {
+                <input type="hidden" id="chatRoomId" value="@Model[0].RoomId" />
+            }
             <input type="text" id="message" class="form-control" placeholder="Write your message here..." aria-label="Write your message" aria-describedby="button-addon4">
             <div class="input-group-append" id="button-addon4">
                 <button class="btn btn-outline-secondary" type="button" id="sendMessage">Send message</button>
                 <button class="btn btn-outline-secondary" type="button" id="clearMessage">Clear</button>
             </div>
         </div>
-    </div>
-    <div class="alert alert-success" role="alert">
-        <strong>User: </strong>@User.Identity.Name
     </div>
 </div>
 

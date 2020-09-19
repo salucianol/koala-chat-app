@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 
 namespace KoalaChatApp.ApplicationCore.Specifications {
-    public abstract class BaseSpecification<T> : ISpecification<T> where T : BaseEntity {
+    public abstract class BaseSpecification<T> : ISpecification<T> {
         public BaseSpecification(Expression<Func<T, bool>> criteria) {
             this.Criteria = criteria;
         }
