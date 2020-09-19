@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using KoalaChatApp.ApplicationCore.Entities;
-using System.Text;
 
 namespace KoalaChatApp.ApplicationCore.Interfaces {
     public interface ISpecification<T> {

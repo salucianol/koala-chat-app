@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KoalaChatApp.ApplicationCore.DTOs {
+﻿namespace KoalaChatApp.ApplicationCore.DTOs {
     public class QueueMessageDTO {
         public string Command { get; set; }
         public string RoomId { get; set; }

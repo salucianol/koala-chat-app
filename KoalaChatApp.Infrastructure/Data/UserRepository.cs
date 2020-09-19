@@ -1,17 +1,14 @@
 ﻿using KoalaChatApp.ApplicationCore.Interfaces;
-using KoalaChatApp.Infrastructure.Data;
 using KoalaChatApp.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace KoalaChatApp.Infrastructure.Data {
     public class UserRepository : IRepository<ChatUser> {
-        private readonly KoalaChatIdentityDbContext koalaChatIdentityDbContext;
+        private readonly KoalaChatIdentityDbContext _koalaChatIdentityDbContext;
         public UserRepository(KoalaChatIdentityDbContext koalaChatIdentityDbContext) {
-            this.koalaChatIdentityDbContext = koalaChatIdentityDbContext;
+            _koalaChatIdentityDbContext = koalaChatIdentityDbContext;
         }
         public void Add(ChatUser entity) {
             return;
@@ -23,15 +20,20 @@ namespace KoalaChatApp.Infrastructure.Data {
 
         public IEnumerable<ChatUser> Get(ISpecification<ChatUser> specification) {
             var queryableIncluded = specification.Includes
-                .Aggregate(this.koalaChatIdentityDbContext.Users.AsQueryable(), (current, include) => current.Include(include));
+                .Aggregate(_koalaChatIdentityDbContext.Users.AsQueryable(), 
+                            (current, include) => current.Include(include));
+
             var queryableIncludedStrings = specification.IncludeStrings
                 .Aggregate(queryableIncluded,
                     (current, include) => current.Include(include));
-            return queryableIncludedStrings.Where(specification.Criteria).AsEnumerable();
+            
+            return queryableIncludedStrings
+                        .Where(specification.Criteria)
+                        .AsEnumerable();
         }
 
         public void SaveChanges() {
-            this.koalaChatIdentityDbContext.SaveChanges();
+            _koalaChatIdentityDbContext.SaveChanges();
         }
 
         public void Update(ChatUser entity) {

@@ -20,7 +20,8 @@ namespace KoalaChatApp.Bot {
     public class Program {
         public static void Main(string[] args) {
             IHost host = CreateHostBuilder(args).Build();
-            IMessageQueue messageQueue = host.Services.GetRequiredService<IMessageQueue>();
+            IMessageQueue messageQueue = host.Services
+                                                .GetRequiredService<IMessageQueue>();
             messageQueue.Connect();
             host.Run();
         }
@@ -29,8 +30,10 @@ namespace KoalaChatApp.Bot {
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(loggerFactory => loggerFactory.AddConsole())
                 .ConfigureServices((hostContext, services) => {
-                    RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
-                    hostContext.Configuration.GetSection("RabbitMqConfigurations").Bind(rabbitConfigurations);
+                    RabbitMqConfigurations rabbitConfigurations = 
+                                                new RabbitMqConfigurations();
+                    hostContext.Configuration.GetSection("RabbitMqConfigurations")
+                                                .Bind(rabbitConfigurations);
                     services.AddMediatR(Assembly.GetExecutingAssembly());
                     services.AddLogging(configure => configure.AddConsole());
                     services.AddMemoryCache();
@@ -44,7 +47,8 @@ namespace KoalaChatApp.Bot {
                     services.AddSingleton<IApiRequester, ApiRequester>();
                     services.AddSingleton<IMessageQueue, MessageQueue>();
                     services.AddSingleton<ITextParser, CsvTextParser>();
-                    services.AddSingleton<IRequestHandler<StockQuoteRequestModel, bool>, ProcessCommandStockRequestHandler>();
+                    services.AddSingleton<IRequestHandler<StockQuoteRequestModel, bool>, 
+                                            ProcessCommandStockRequestHandler>();
                     services.AddHostedService<Worker>();
                 });
     }

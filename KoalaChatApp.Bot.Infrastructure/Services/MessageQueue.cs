@@ -11,54 +11,60 @@ using Newtonsoft.Json;
 
 namespace KoalaChatApp.Bot.Infrastructure.Services {
     public class MessageQueue : IMessageQueue {
-        private readonly IConnectionFactory connectionFactory;
-        private readonly IConfiguration configuration;
-        private readonly IMediator mediator;
-        private readonly RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
-        private IConnection connection;
-        private IModel model;
-        public MessageQueue(IConnectionFactory connectionFactory, IConfiguration configuration, IMediator mediator) {
-            this.connectionFactory = connectionFactory;
-            this.configuration = configuration;
-            this.configuration.GetSection("RabbitMqConfigurations").Bind(this.rabbitConfigurations);
-            this.mediator = mediator;
+        private readonly IConnectionFactory _connectionFactory;
+        private readonly IConfiguration _configuration;
+        private readonly IMediator _mediator;
+        private readonly RabbitMqConfigurations _rabbitConfigurations = new RabbitMqConfigurations();
+        private IConnection _connection;
+        private IModel _model;
+        public MessageQueue(IConnectionFactory connectionFactory, 
+                                IConfiguration configuration, 
+                                IMediator mediator) {
+            _connectionFactory = connectionFactory;
+            _configuration = configuration;
+            _configuration.GetSection("RabbitMqConfigurations")
+                            .Bind(_rabbitConfigurations);
+            _mediator = mediator;
         }
 
         public void Connect() {
-            if (this.connection == null) {
-                this.connection = this.connectionFactory.CreateConnection();
-                if (this.model == null) {
-                    this.model = connection.CreateModel();
+            if (_connection == null) {
+                _connection = _connectionFactory.CreateConnection();
+                if (_model == null) {
+                    _model = _connection.CreateModel();
                 }
-                model.QueueDeclare(queue: this.rabbitConfigurations.MessageInboundQueue,
+                _model.QueueDeclare(queue: _rabbitConfigurations.MessageInboundQueue,
                                         durable: false,
                                         exclusive: false,
                                         autoDelete: false,
                                         arguments: null);
-                model.QueueDeclare(queue: this.rabbitConfigurations.MessageOutboundQueue,
+                _model.QueueDeclare(queue: _rabbitConfigurations.MessageOutboundQueue,
                                         durable: false,
                                         exclusive: false,
                                         autoDelete: false,
                                         arguments: null);
 
-                EventingBasicConsumer eventingBasicConsumer = new EventingBasicConsumer(this.model);
+                EventingBasicConsumer eventingBasicConsumer = new EventingBasicConsumer(_model);
                 eventingBasicConsumer.Received += EventingBasicConsumer_Received;
-                model.BasicConsume(this.rabbitConfigurations.MessageInboundQueue, true, eventingBasicConsumer);
+                _model.BasicConsume(_rabbitConfigurations.MessageInboundQueue, 
+                                        true, 
+                                        eventingBasicConsumer);
             }
         }
 
         public void EnqueueMessage(QueueMessage message) {
             byte[] queueMessage = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
-            this.model = this.connection.CreateModel();
-            this.model.BasicPublish(exchange: "",
-                                 routingKey: this.rabbitConfigurations.MessageOutboundQueue,
+            _model = _connection.CreateModel();
+            _model.BasicPublish(exchange: "",
+                                 routingKey: _rabbitConfigurations.MessageOutboundQueue,
                                  basicProperties: null,
                                  body: queueMessage);
         }
 
         private async void EventingBasicConsumer_Received(object sender, BasicDeliverEventArgs e) {
-            QueueMessage queueMessage = JsonConvert.DeserializeObject<QueueMessage>(Encoding.UTF8.GetString(e.Body.ToArray()));
-            await this.mediator.Send<bool>(new StockQuoteRequestModel {
+            QueueMessage queueMessage = JsonConvert
+                                            .DeserializeObject<QueueMessage>(Encoding.UTF8.GetString(e.Body.ToArray()));
+            await _mediator.Send<bool>(new StockQuoteRequestModel {
                 Command = queueMessage.Command,
                 RoomId = queueMessage.RoomId
             });

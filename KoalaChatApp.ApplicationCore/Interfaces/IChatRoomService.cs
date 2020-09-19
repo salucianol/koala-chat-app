@@ -2,7 +2,6 @@
 using KoalaChatApp.ApplicationCore.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace KoalaChatApp.ApplicationCore.Interfaces {
     public interface IChatRoomService {

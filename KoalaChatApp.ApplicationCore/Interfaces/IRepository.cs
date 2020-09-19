@@ -1,7 +1,4 @@
-﻿using KoalaChatApp.ApplicationCore.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace KoalaChatApp.ApplicationCore.Interfaces {
     public interface IRepository<T> {

@@ -39,17 +39,20 @@ namespace KoalaChatApp.Web {
                 options.UseSqlServer(
                     Configuration.GetConnectionString("LocalDB")));
 
-            services.AddIdentity<ChatUser, IdentityRole<Guid>>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<KoalaChatIdentityDbContext>();
+            services.AddIdentity<ChatUser, IdentityRole<Guid>>(options => 
+                                                                options.SignIn.RequireConfirmedAccount = false)
+                                                                .AddEntityFrameworkStores<KoalaChatIdentityDbContext>();
 
             RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
-            Configuration.GetSection("RabbitMqConfigurations").Bind(rabbitConfigurations);
-            services.AddSingleton<RabbitMQ.Client.IConnectionFactory>(new ConnectionFactory {
-                HostName = rabbitConfigurations.Hostname,
-                Port = rabbitConfigurations.Port,
-                UserName = rabbitConfigurations.Username,
-                Password = rabbitConfigurations.Password
-            });
+            Configuration.GetSection("RabbitMqConfigurations")
+                            .Bind(rabbitConfigurations);
+            services
+                .AddSingleton<RabbitMQ.Client.IConnectionFactory>(new ConnectionFactory {
+                    HostName = rabbitConfigurations.Hostname,
+                    Port = rabbitConfigurations.Port,
+                    UserName = rabbitConfigurations.Username,
+                    Password = rabbitConfigurations.Password
+                });
 
             services.AddSingleton<ICommandsHelper, CommandsHelper>();
             services.AddSingleton<IMessageQueue, MessageQueue>();
@@ -64,8 +67,7 @@ namespace KoalaChatApp.Web {
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddSignalR();
 
-            services.Configure<IdentityOptions>(options =>
-            {
+            services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
@@ -80,8 +82,7 @@ namespace KoalaChatApp.Web {
                 options.User.RequireUniqueEmail = false;
             });
 
-            services.ConfigureApplicationCookie(options =>
-            {
+            services.ConfigureApplicationCookie(options => {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
