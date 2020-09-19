@@ -1,6 +1,4 @@
 ﻿using KoalaChatApp.Bot.ApplicationCore.Interfaces;
-using KoalaChatApp.Bot.Infrastructure.Configurations;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
@@ -15,15 +13,13 @@ namespace KoalaChatApp.Bot.Infrastructure.Services {
 
         public async Task<string> MakeGetRequest(string url) {
             try {
-                using (HttpClient httpClient = new HttpClient()) {
-                    using (HttpResponseMessage responseMessage = await httpClient.GetAsync(url)) {
-                        this.logger.LogInformation($"Requesting URL: {url}", null);
-                        if (responseMessage.IsSuccessStatusCode) {
-                            return await responseMessage.Content.ReadAsStringAsync();
-                        }
-                        return string.Empty;
-                    }
+                using HttpClient httpClient = new HttpClient();
+                using HttpResponseMessage responseMessage = await httpClient.GetAsync(url);
+                this.logger.LogInformation($"Requesting URL: {url}", null);
+                if (responseMessage.IsSuccessStatusCode) {
+                    return await responseMessage.Content.ReadAsStringAsync();
                 }
+                return string.Empty;
             } catch (Exception) {
                 throw;
             }

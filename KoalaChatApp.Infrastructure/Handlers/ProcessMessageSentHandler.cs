@@ -25,7 +25,10 @@ namespace KoalaChatApp.Infrastructure.Handlers {
                 if (chatMessage.MessageType == ApplicationCore.Enums.ChatMessageType.TEXT) {
                     this.chatRoomService.AddChatMessage(Guid.Parse(request.ChatRoomId), ((ChatMessageText)chatMessage));
                 } else if (chatMessage.MessageType == ApplicationCore.Enums.ChatMessageType.COMMAND) {
-                    this.messageQueue.EnqueueMessage(((ChatMessageCommand)chatMessage).Command);
+                    this.messageQueue.EnqueueMessage(new ApplicationCore.DTOs.QueueMessageDTO {
+                        Command = ((ChatMessageCommand)chatMessage).Command,
+                        RoomId = request.ChatRoomId
+                    });
                 }
                 return Task.FromResult(true);
             }

@@ -2,24 +2,32 @@
 using KoalaChatApp.ApplicationCore.Interfaces;
 using KoalaChatApp.Infrastructure.Configurations;
 using KoalaChatApp.Infrastructure.Interfaces;
-using MediatR;
 using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Text;
+using Newtonsoft.Json;
+using KoalaChatApp.ApplicationCore.DTOs;
+using KoalaChatApp.Infrastructure.Models;
+using KoalaChatApp.Infrastructure.Data.Specifications;
+using System.Linq;
 
 namespace KoalaChatApp.Infrastructure.Services {
     public class MessageQueue : IMessageQueue {
         private readonly IConnectionFactory connectionFactory;
         private readonly IConfiguration configuration;
-        private RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
+        private readonly IChatHubService chatHubService;
+        private readonly IRepository<ChatUser> userRepository;
+        private readonly RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
         private IConnection connection;
         private IModel model;
-        public MessageQueue(IConnectionFactory connectionFactory, IConfiguration configuration) {
+        public MessageQueue(IConnectionFactory connectionFactory, IConfiguration configuration, IChatHubService chatHubService, IRepository<ChatUser> userRepository) {
             this.connectionFactory = connectionFactory;
             this.configuration = configuration;
             this.configuration.GetSection("RabbitMqConfigurations").Bind(this.rabbitConfigurations);
+            this.chatHubService = chatHubService;
+            this.userRepository = userRepository;
         }
 
         public void Connect() {
@@ -45,8 +53,8 @@ namespace KoalaChatApp.Infrastructure.Services {
             }
         }
 
-        public void EnqueueMessage(string message) {
-            byte[] queueMessage = Encoding.UTF8.GetBytes(message);
+        public void EnqueueMessage(QueueMessageDTO message) {
+            byte[] queueMessage = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
             this.model = this.connection.CreateModel();
             this.model.BasicPublish(exchange: "",
                                  routingKey: this.rabbitConfigurations.MessageInboundQueue,
@@ -55,7 +63,15 @@ namespace KoalaChatApp.Infrastructure.Services {
         }
 
         private void EventingBasicConsumer_Received(object sender, BasicDeliverEventArgs e) {
-            ChatMessageText chatMessageText = new ChatMessageText(Guid.Parse("00000000-0000-0000-0000-000000000000"), Encoding.UTF8.GetString(e.Body.ToArray()));
+            QueueMessageDTO queueMessage = JsonConvert.DeserializeObject<QueueMessageDTO>(Encoding.UTF8.GetString(e.Body.ToArray()));
+            ChatMessageTextDTO chatMessageText = new ChatMessageTextDTO {
+                Date = DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm"),
+                RoomId = Guid.Parse(queueMessage.RoomId),
+                RoomName = string.Empty,
+                Text = queueMessage.Quote,
+                User = this.userRepository.Get(new UserSpecification("bot@koalaappchat")).FirstOrDefault().UserName
+            };
+            this.chatHubService.SendMessage(queueMessage.RoomId, chatMessageText);
         }
     }
 }

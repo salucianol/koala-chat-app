@@ -10,5 +10,7 @@ namespace KoalaChatApp.ApplicationCore.Specifications {
         }
         public ChatRoomSpecification(Guid chatRoomId) : base(cr => cr.IsDeleted == false && cr.Id == chatRoomId) {
         }
+        public ChatRoomSpecification(string name): base(cr => cr.IsDeleted == false && cr.Name == name) {
+        }
     }
 }

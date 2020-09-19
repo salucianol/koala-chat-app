@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Z0hxrlifBOCvznDmvqbDFtGoL2eyHJdcQ7bNJ6r4xKe1F6To9LEufAI0jv4XjQLeUViX374VyjAeSacH+isYwQ==",
+  "dgSpecHash": "EqA2XExJVnRzvIuC3qa6gT7NsbEjMmtgyWJA7hztf4YEUkdWeLy1bAnuvwcyNNriW4aw1GWBibKjn4NJkF7tbQ==",
   "success": true,
   "projectFilePath": "C:\\repos\\vstudio\\KoalaChatApp\\KoalaChatApp.Bot\\KoalaChatApp.Bot.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.8\\microsoft.extensions.primitives.3.1.8.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\rabbitmq.client\\6.2.1\\rabbitmq.client.6.2.1.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\system.diagnostics.eventlog\\4.7.0\\system.diagnostics.eventlog.4.7.0.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",

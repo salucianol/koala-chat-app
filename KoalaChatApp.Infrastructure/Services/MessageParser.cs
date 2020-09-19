@@ -3,11 +3,12 @@ using KoalaChatApp.ApplicationCore.Interfaces;
 using System;
 using System.Text.RegularExpressions;
 using KoalaChatApp.Infrastructure.Interfaces;
+using KoalaChatApp.Infrastructure.Exceptions;
 
 namespace KoalaChatApp.Infrastructure.Services {
     public class MessageParser : IMessageParser {
         private readonly ICommandsHelper commandsHelper;
-        public MessageParser(ICommandsHelper commandsHelper, IChatRoomService chatRoomService) {
+        public MessageParser(ICommandsHelper commandsHelper) {
             this.commandsHelper = commandsHelper;
         }
         public ChatMessage ParseMessage(Guid userId, string message) {
@@ -15,15 +16,18 @@ namespace KoalaChatApp.Infrastructure.Services {
                 Regex regex = new Regex(@"^\/(.*?)=(.*)$");
                 Match match = regex.Match(message);
                 if (match.Groups.Count != 3) {
-                    // TODO: Add some code to get displayed an error message since the command was wrong.
-                    return null;
+                    throw new CommandFormatException(message);
                 }
                 if (!this.commandsHelper.IsCommandValid(match.Groups[1].Value)) {
-                    return null;
+                    throw new CommandNotFoundException(match.Groups[1].Value);
                 }
-                return new ChatMessageCommand(userId, match.Groups[2].Value, ApplicationCore.Enums.ChatMessageType.COMMAND);
+                return new ChatMessageCommand(userId, match.Groups[2].Value, ApplicationCore.Enums.ChatMessageType.COMMAND) {
+                    SentDate = DateTimeOffset.Now
+                };
             }
-            return new ChatMessageText(userId, message);
+            return new ChatMessageText(userId, message) {
+                SentDate = DateTimeOffset.Now
+            };
         }
     }
 }

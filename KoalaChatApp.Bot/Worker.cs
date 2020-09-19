@@ -14,7 +14,7 @@ namespace KoalaChatApp.Bot {
     public class Worker : BackgroundService {
         private readonly ILogger<Worker> logger;
         private readonly IConfiguration configuration;
-        private BotConfigurations botConfigurations = new BotConfigurations();
+        private readonly BotConfigurations botConfigurations = new BotConfigurations();
 
         public Worker(ILogger<Worker> logger, IConfiguration configuration) {
             this.logger = logger;
@@ -23,7 +23,7 @@ namespace KoalaChatApp.Bot {
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
-            while (!stoppingToken.IsCancellationRequested) {
+            if (!stoppingToken.IsCancellationRequested) {
                 this.logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(TimeSpan.FromSeconds(this.botConfigurations.ServiceDelay).Milliseconds, stoppingToken);
             }

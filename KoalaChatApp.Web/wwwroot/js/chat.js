@@ -4,9 +4,14 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/koalachat").build(
 
 document.getElementById("sendMessage").disabled = true;
 
-connection.on(document.getElementById("chatRoomId").value, function (user, message) {
+connection.on(document.getElementById("chatRoomId").value, function (user, date, message) {
+    var chatMessagesCount = document.getElementById("chatMessagesCount").value;
+    var chatMessagesCountLimit = document.getElementById("chatMessagesCountLimit").value;
+    if (chatMessagesCount > chatMessagesCountLimit) {
+        document.getElementById("chatMessages").removeChild(document.getElementById("chatMessages").childNodes[0]);
+    }
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + ": " + msg;
+    var encodedMsg = "<strong>" + user + ":</strong> " + msg + "<span class='float-right'>" + date + "</span>";
     var div = document.createElement("div");
     div.textContent = encodedMsg;
     div.className = "alert alert-info col-md-12";

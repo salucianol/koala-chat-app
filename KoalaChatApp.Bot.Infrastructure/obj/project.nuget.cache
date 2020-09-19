@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "71j2PyOEhZycMfFeiZXM+IDYRSWbxW7IQZyH9RrKn1PQHKSc3KE0cINrxMhcx9w+EzCbH9IUqZiVSRUkVYrrHw==",
+  "dgSpecHash": "umqt1GL3i4Kp0mUFsbZdaqlqIP9BvFJMwH0FUNiqZbL7dgunhSn3fsPNtx0UCyLrEJ4oDlNbhR1KDYuqNMlBRQ==",
   "success": true,
   "projectFilePath": "C:\\repos\\vstudio\\KoalaChatApp\\KoalaChatApp.Bot.Infrastructure\\KoalaChatApp.Bot.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.8\\microsoft.extensions.logging.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.options\\3.1.8\\microsoft.extensions.options.3.1.8.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.8\\microsoft.extensions.primitives.3.1.8.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\rabbitmq.client\\6.2.1\\rabbitmq.client.6.2.1.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",

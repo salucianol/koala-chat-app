@@ -11,7 +11,7 @@ namespace KoalaChatApp.Bot.Infrastructure.Services {
         private readonly IMemoryCache memoryCache;
         private readonly ILogger<Cache> logger;
         private readonly IConfiguration configuration;
-        private BotConfigurations botConfigurations = new BotConfigurations();
+        private readonly BotConfigurations botConfigurations = new BotConfigurations();
 
         public Cache(IMemoryCache memoryCache, ILogger<Cache> logger, IConfiguration configuration) {
             this.memoryCache = memoryCache;
@@ -21,8 +21,7 @@ namespace KoalaChatApp.Bot.Infrastructure.Services {
         }
         public CacheKey<Stock> GetKey(string key) {
             try {
-                CacheKey<Stock> cacheKey;
-                if (!this.memoryCache.TryGetValue(key, out cacheKey)) {
+                if (!this.memoryCache.TryGetValue(key, out CacheKey<Stock> cacheKey)) {
                     return null;
                 }
                 return cacheKey;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KoalaChatApp.Bot.ApplicationCore.Interfaces {
     public interface IMessageQueue {
-        void EnqueueMessage(Message message);
+        void EnqueueMessage(QueueMessage message);
         void Connect();
     }
 }

@@ -20,6 +20,7 @@ using KoalaChatApp.Infrastructure.Handlers;
 using RabbitMQ.Client;
 using KoalaChatApp.Infrastructure.Configurations;
 using System.Reflection;
+using KoalaChatApp.Web.Services;
 
 namespace KoalaChatApp.Web {
     public class Startup {
@@ -52,6 +53,7 @@ namespace KoalaChatApp.Web {
 
             services.AddSingleton<ICommandsHelper, CommandsHelper>();
             services.AddSingleton<IMessageQueue, MessageQueue>();
+            services.AddSingleton<IChatHubService, ChatHubService>();
             services.AddScoped<IMessageParser, MessageParser>();
             services.AddScoped<IRepository<ChatRoom>, ChatRoomRepository>();
             services.AddScoped<IRepository<ChatUser>, UserRepository>();

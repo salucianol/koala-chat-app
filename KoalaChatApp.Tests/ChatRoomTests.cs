@@ -39,6 +39,7 @@ namespace KoalaChatApp.Tests {
             (bool result, string message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello madame!"));
             (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello everyone in this special group. God bless you."));
             (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hi there. Nice to meet you."));
+            (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hi there. Nice to meet you."));
             Assert.AreEqual(false, result);
             Assert.AreEqual($"Chat messages count ({chatRoom.MaxMessagesCount}) excedeed.", message);
         }

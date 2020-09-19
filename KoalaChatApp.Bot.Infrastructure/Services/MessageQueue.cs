@@ -2,19 +2,19 @@
 using KoalaChatApp.Bot.ApplicationCore.Interfaces;
 using KoalaChatApp.Bot.ApplicationCore.Models;
 using KoalaChatApp.Bot.Infrastructure.Configurations;
-using KoalaChatApp.Bot.Infrastructure.Handlers;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace KoalaChatApp.Bot.Infrastructure.Services {
     public class MessageQueue : IMessageQueue {
         private readonly IConnectionFactory connectionFactory;
         private readonly IConfiguration configuration;
         private readonly IMediator mediator;
-        private RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
+        private readonly RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
         private IConnection connection;
         private IModel model;
         public MessageQueue(IConnectionFactory connectionFactory, IConfiguration configuration, IMediator mediator) {
@@ -47,8 +47,8 @@ namespace KoalaChatApp.Bot.Infrastructure.Services {
             }
         }
 
-        public void EnqueueMessage(Message message) {
-            byte[] queueMessage = Encoding.UTF8.GetBytes(message.StockQuote.GetQuote());
+        public void EnqueueMessage(QueueMessage message) {
+            byte[] queueMessage = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
             this.model = this.connection.CreateModel();
             this.model.BasicPublish(exchange: "",
                                  routingKey: this.rabbitConfigurations.MessageOutboundQueue,
@@ -57,11 +57,10 @@ namespace KoalaChatApp.Bot.Infrastructure.Services {
         }
 
         private async void EventingBasicConsumer_Received(object sender, BasicDeliverEventArgs e) {
-            StockCommand stockCommand = new StockCommand {
-                Command = Encoding.UTF8.GetString(e.Body.ToArray())
-            };
-            bool processed = await this.mediator.Send<bool>(new StockQuoteRequestModel {
-                Command = stockCommand.Command
+            QueueMessage queueMessage = JsonConvert.DeserializeObject<QueueMessage>(Encoding.UTF8.GetString(e.Body.ToArray()));
+            await this.mediator.Send<bool>(new StockQuoteRequestModel {
+                Command = queueMessage.Command,
+                RoomId = queueMessage.RoomId
             });
         }
     }

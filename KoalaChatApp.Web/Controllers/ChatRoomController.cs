@@ -18,6 +18,7 @@ namespace KoalaChatApp.Web.Controllers {
             this.chatRoomService = chatRoomService;
         }
         public IActionResult Index(Guid id) {
+            ChatRoom chatRoom = this.chatRoomService.GetChatRoom(id);
             List<ChatMessageModelResponse> chatMessages = this.chatRoomService.GetChatRoomMessages(id).Select(cm => new ChatMessageModelResponse {
                 Text = cm.Text,
                 Date = cm.Date,
@@ -25,6 +26,7 @@ namespace KoalaChatApp.Web.Controllers {
                 RoomName = cm.RoomName,
                 RoomId = cm.RoomId
             }).ToList();
+            ViewBag.ChatMessagesCountLimit = chatRoom.MaxMessagesCount;
             return View(chatMessages);
         }
     }

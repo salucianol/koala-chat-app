@@ -1,5 +1,9 @@
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\appsettings.json
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Published\appsettings.Development.json
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Published\appsettings.json
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Published\KoalaChatApp.Bot.deps.json
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Published\KoalaChatApp.Bot.runtimeconfig.json
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\KoalaChatApp.Bot.exe
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\KoalaChatApp.Bot.deps.json
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\KoalaChatApp.Bot.runtimeconfig.json
@@ -37,6 +41,7 @@ C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Microsoft
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\RabbitMQ.Client.dll
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\System.Diagnostics.EventLog.dll
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Bot\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll

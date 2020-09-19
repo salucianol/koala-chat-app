@@ -10,9 +10,9 @@ using System.Text;
 namespace KoalaChatApp.ApplicationCore.Entities {
     public class ChatRoom : BaseEntity {
         public string Name { get; set; }
-        public ICollection<ChatMessageText> Messages { get; set; }
+        public ICollection<ChatMessageText> Messages { get; set; } = new List<ChatMessageText>();
         [NotMapped]
-        public ICollection<Guid> Users { get; set; }
+        public ICollection<Guid> Users { get; set; } = new List<Guid>();
         public short MaxUsersAllowed { get; set; }
         public short MaxCharactersCount { get; set; }
         public short MaxMessagesCount { get; set; }

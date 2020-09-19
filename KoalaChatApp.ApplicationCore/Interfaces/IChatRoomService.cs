@@ -11,6 +11,7 @@ namespace KoalaChatApp.ApplicationCore.Interfaces {
         void AddChatRoom(ChatRoom chatRoom);
         IEnumerable<ChatRoom> GetChatRooms();
         ChatRoom GetChatRoom(Guid chatRoomId);
+        ChatRoom GetChatRoom(string name);
         IEnumerable<ChatMessageTextDTO> GetChatRoomMessages(Guid chatRoomId);
         void AddChatMessage(Guid chatRoomId, ChatMessageText chatMessageText);
     }

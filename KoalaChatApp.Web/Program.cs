@@ -21,8 +21,10 @@ namespace KoalaChatApp.Web {
             messageQueue.Connect();
             ICommandsHelper commandsHelper = host.Services.GetRequiredService<ICommandsHelper>();
             commandsHelper.AddCommand("stock");
-            //var userManager = host.Services.GetRequiredService<UserManager<ChatUser>>();
-            //DatabaseInitialization.Initialize(userManager);
+            var userManager = host.Services.GetRequiredService<UserManager<ChatUser>>();
+            var logger = host.Services.GetRequiredService<ILogger<DatabaseInitialization>>();
+            var chatRoomService = host.Services.GetRequiredService<IChatRoomService>();
+            DatabaseInitialization.Initialize(userManager, logger, chatRoomService);
             host.Run();
         }
 
@@ -30,6 +32,7 @@ namespace KoalaChatApp.Web {
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseDefaultServiceProvider(options => options.ValidateScopes = false);
                 });
     }
 }

@@ -42,10 +42,10 @@ namespace KoalaChatApp.Bot.Infrastructure.Handlers {
                     } else {
                         stock = cacheStockKey.Message;
                     }
-                    this.messageQueue.EnqueueMessage(new Message {
-                        StockQuote = new StockQuote {
-                            Stock = stock
-                        }
+                    this.messageQueue.EnqueueMessage(new QueueMessage {
+                        Command = request.Command,
+                        RoomId = request.RoomId,
+                        Quote = $"{stock.Symbol} quote is {stock.Open} per share."
                     });
                     return true;
                 }
