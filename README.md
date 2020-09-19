@@ -4,12 +4,12 @@ This a simple Chat using SignalR for real time application and applying the best
 ## Prerrequisites
 1. .NET Core 3.1 [Latest] (https://dotnet.microsoft.com/download/dotnet-core/3.1)
 2. Docker Desktop (https://www.docker.com/products/docker-desktop)
-3. Visual Studio 2015+ (for development)
+3. Visual Studio 2019 Community Edition (for development) (VS219: https://visualstudio.microsoft.com/downloads/)
 4. RabbitMQ Docker Image (https://hub.docker.com/_/rabbitmq)
 5. SQL Server
 
 ## Installation
-For the installation, you could use the Powershell script called Install.ps1 which you can found in this repository or follow the steps below on Windows Powershell with Administrator Privileges:
+For the installation, you could use the Powershell script called **KoalaChatApp.Install.ps1** which you can found in this repository or follow the steps below on Windows Powershell with Administrator Privileges:
 
 First of all, clone this repository using the following *git* command:
 
