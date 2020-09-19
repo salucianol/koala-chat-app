@@ -8,7 +8,7 @@ using System.Text;
 namespace KoalaChatApp.Infrastructure.Data {
     public class KoalaChatDbContext : DbContext {
         public DbSet<ChatRoom> ChatRooms { get; set; }
-        public KoalaChatDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions) {
+        public KoalaChatDbContext(DbContextOptions<KoalaChatDbContext> dbContextOptions) : base(dbContextOptions) {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

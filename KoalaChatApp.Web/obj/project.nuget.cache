@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "xRIIyWACquKFM3hndGIQ82woWSTaSHYM0aozd450uzuZL2A81w0Bkb4irYqFq4hLE5C9DecCtEdaBCw6X956uA==",
+  "dgSpecHash": "pqwGubFst3hkhV5fx0lGo7tbQngV0/rM9TlAyxJO9HSTpAEDwfqKApXvx/DD16PqOgFy5jWjvGfxjHHA0Rvs0w==",
   "success": true,
   "projectFilePath": "C:\\repos\\vstudio\\KoalaChatApp\\KoalaChatApp.Web\\KoalaChatApp.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\saluc\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
+    "C:\\Users\\saluc\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\8.1.0\\mediatr.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",
     "C:\\Users\\saluc\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\3.1.8\\microsoft.aspnetcore.diagnostics.entityframeworkcore.3.1.8.nupkg.sha512",

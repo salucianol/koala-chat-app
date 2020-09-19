@@ -179,3 +179,6 @@ C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\obj\Debug\netcoreapp3.1\Razor\Are
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\ChatRoom\Index.cshtml.g.cs
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\bin\Debug\netcoreapp3.1\libman.json
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\bin\Debug\netcoreapp3.1\MediatR.dll
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\ChatUser\Index.cshtml.g.cs
+C:\repos\vstudio\KoalaChatApp\KoalaChatApp.Web\bin\Debug\netcoreapp3.1\MediatR.Extensions.Microsoft.DependencyInjection.dll

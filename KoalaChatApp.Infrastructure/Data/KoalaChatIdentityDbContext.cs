@@ -9,7 +9,7 @@ using System.Text;
 
 namespace KoalaChatApp.Infrastructure.Data {
     public class KoalaChatIdentityDbContext : IdentityDbContext<ChatUser, IdentityRole<Guid>, Guid> {
-        public KoalaChatIdentityDbContext(DbContextOptions options) : base(options) {
+        public KoalaChatIdentityDbContext(DbContextOptions<KoalaChatIdentityDbContext> options) : base(options) {
 
         }
 

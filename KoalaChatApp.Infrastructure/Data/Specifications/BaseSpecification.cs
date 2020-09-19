@@ -10,5 +10,13 @@ namespace KoalaChatApp.Infrastructure.Data.Specifications {
         public Expression<Func<T, bool>> Criteria { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<Expression<Func<T, object>>> Includes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<string> IncludeStrings { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public void AddInclude(Expression<Func<T, object>> includeExpression) {
+            Includes.Add(includeExpression);
+        }
+
+        public void AddInclude(string includeString) {
+            IncludeStrings.Add(includeString);
+        }
     }
 }

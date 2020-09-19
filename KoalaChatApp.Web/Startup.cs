@@ -9,6 +9,17 @@ using Microsoft.Extensions.Hosting;
 using KoalaChatApp.Infrastructure.Data;
 using KoalaChatApp.Infrastructure.Models;
 using KoalaChatApp.Web.Hubs;
+using KoalaChatApp.Infrastructure;
+using KoalaChatApp.Infrastructure.Helpers;
+using KoalaChatApp.ApplicationCore.Interfaces;
+using KoalaChatApp.Infrastructure.Services;
+using KoalaChatApp.ApplicationCore.Specifications;
+using KoalaChatApp.ApplicationCore.Entities;
+using MediatR;
+using KoalaChatApp.Infrastructure.Handlers;
+using RabbitMQ.Client;
+using KoalaChatApp.Infrastructure.Configurations;
+using System.Reflection;
 
 namespace KoalaChatApp.Web {
     public class Startup {
@@ -30,6 +41,24 @@ namespace KoalaChatApp.Web {
             services.AddIdentity<ChatUser, IdentityRole<Guid>>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<KoalaChatIdentityDbContext>();
 
+            services.AddScoped<ICommandsHelper, CommandsHelper>();
+
+            RabbitMqConfigurations rabbitConfigurations = new RabbitMqConfigurations();
+            Configuration.GetSection("RabbitMqConfigurations").Bind(rabbitConfigurations);
+            services.AddSingleton<RabbitMQ.Client.IConnectionFactory>(new ConnectionFactory {
+                HostName = rabbitConfigurations.Hostname,
+                Port = rabbitConfigurations.Port,
+                UserName = rabbitConfigurations.Username,
+                Password = rabbitConfigurations.Password
+            });
+            services.AddSingleton<IMessageQueue, MessageQueue>();
+            services.AddScoped<IMessageParser, MessageParser>();
+            services.AddScoped<IRepository<ChatRoom>, ChatRoomRepository>();
+            services.AddScoped<IChatRoomService, ChatRoomService>();
+            services.AddScoped<ISpecification<ChatRoom>, ChatRoomSpecification>();
+            services.AddScoped<IRequestHandler<ChatMessageRequestModel, bool>, ProcessMessageSentHandler>();
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddSignalR();
 
             services.Configure<IdentityOptions>(options =>
@@ -83,7 +112,7 @@ namespace KoalaChatApp.Web {
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=ChatRoom}/{action=Index}/{id?}");
+                    pattern: "{controller=ChatUser}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
                 endpoints.MapHub<KoalaChatHub>("/koalachat");
             });
