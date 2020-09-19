@@ -6,4 +6,3 @@ C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.csproj.CoreCompileInputs.cache
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.dll
 C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.pdb
-C:\repos\vstudio\KoalaChatApp\KoalaChatApp.ApplicationCore\obj\Debug\netcoreapp3.1\KoalaChatApp.ApplicationCore.csprojAssemblyReference.cache

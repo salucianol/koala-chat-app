@@ -27,8 +27,8 @@ namespace KoalaChatApp.Tests {
         [TestMethod]
         public void AddChatMessageBelowBoundaries() {
             this.chatRoom.ClearMessages();
+            chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello!"));
             (bool result, string message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello!"));
-            (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello!"));
             Assert.AreEqual(true, result);
             Assert.AreEqual(string.Empty, message);
         }
@@ -36,10 +36,10 @@ namespace KoalaChatApp.Tests {
         [TestMethod]
         public void AddChatMessageAboveBoundaries() {
             this.chatRoom.ClearMessages();
-            (bool result, string message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello madame!"));
-            (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello everyone in this special group. God bless you."));
-            (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hi there. Nice to meet you."));
-            (result, message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hi there. Nice to meet you."));
+            chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello madame!"));
+            chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hello everyone in this special group. God bless you."));
+            chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hi there. Nice to meet you."));
+            (bool result, string message) = chatRoom.AddMessage(new ChatMessageText(Guid.NewGuid(), "Hi there. Nice to meet you."));
             Assert.AreEqual(false, result);
             Assert.AreEqual($"Chat messages count ({chatRoom.MaxMessagesCount}) excedeed.", message);
         }
@@ -47,9 +47,9 @@ namespace KoalaChatApp.Tests {
         [TestMethod]
         public void GetInNewUserAfterMaxUsersAllowedExcedeed() {
             this.chatRoom.ClearUsers();
+            this.chatRoom.LetUserIn(Guid.NewGuid());
+            this.chatRoom.LetUserIn(Guid.NewGuid());
             (bool result, string message) = this.chatRoom.LetUserIn(Guid.NewGuid());
-            (result, message) = this.chatRoom.LetUserIn(Guid.NewGuid());
-            (result, message) = this.chatRoom.LetUserIn(Guid.NewGuid());
             Assert.AreEqual(false, result);
             Assert.AreEqual($"Users count ({chatRoom.MaxUsersAllowed}) excedeed.", message);
         }
@@ -57,8 +57,8 @@ namespace KoalaChatApp.Tests {
         [TestMethod]
         public void GetInNewUserBeforeMaxUsersAllowedExcedeed() {
             this.chatRoom.ClearUsers();
+            this.chatRoom.LetUserIn(Guid.NewGuid());
             (bool result, string message) = this.chatRoom.LetUserIn(Guid.NewGuid());
-            (result, message) = this.chatRoom.LetUserIn(Guid.NewGuid());
             Assert.AreEqual(true, result);
             Assert.AreEqual(string.Empty, message);
         }
